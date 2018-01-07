@@ -47,8 +47,10 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
     { publicPath: Array(cssFilename.split('/').length).join('../') }
   : {}
 
-// Every folder in app src except 'assets' and 'components' will generate a entry
+// Every folder in app src would generate a entry
+// except 'manifest', 'assets','components' and name starts with '_'
 const entries = fs.readdirSync(paths.appSrc)
+  .filter(name => !name.startsWith('_'))
   .map(name => ({name, dirPath: path.join(paths.appSrc, name)}))
   .filter(({name, dirPath}) => !/^assets|components|manifest$/.test(name) && fs.lstatSync(dirPath).isDirectory())
 
