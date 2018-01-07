@@ -1,0 +1,35 @@
+{
+  "name": "Create React Typescript Sass Webextension",
+  "description": "Boilerplate for building webextension targeting Chrome & Firefox with react, typescript and sass",
+
+  "icons": {
+    "16": "static/logo.png",
+    "48": "static/logo.png",
+    "128": "static/logo.png"
+  },
+
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+
+  "content_scripts": [
+    {
+      "js": ["content.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+
+  "browser_action": {
+    "default_icon": {
+      "19": "static/logo.png",
+      "38": "static/logo.png"
+    },
+    "default_popup": "popup.html"
+  },
+
+  "version": "0.1.0",
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
