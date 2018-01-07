@@ -10,7 +10,12 @@ Battery-included, minimum configuration yet flexible.
 
 # Install
 
-Clone this repo and run `yarn install` inside.
+```bash
+git clone git@github.com:crimx/create-react-typescript-sass-webextension.git
+cd create-react-typescript-sass-webextension
+git remote set-url [your repo url]
+yarn install
+```
 
 # Commands
 
