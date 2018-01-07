@@ -4,7 +4,7 @@
   "description": "Boilerplate for building webextension targeting Chrome & Firefox with react, typescript and sass",
   "private": true,
   "scripts": {
-    "start": "node scripts/start.js --debug",
+    "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "devbuild": "node scripts/build.js --devbuild",
     "test": "node scripts/test.js --env=jsdom"
