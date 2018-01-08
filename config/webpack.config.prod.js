@@ -167,7 +167,7 @@ module.exports = {
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
           {
-            test: /\.s?css$/,
+            test: /\.css$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
@@ -186,8 +186,51 @@ module.exports = {
                         sourceMap: shouldUseSourceMap,
                       },
                     },
-                    require.resolve('postcss-loader'),
-                    require.resolve('sass-loader'),
+                    {
+                      loader: require.resolve('postcss-loader'),
+                      options: {
+                        sourceMap: shouldUseSourceMap,
+                      },
+                    },
+                  ],
+                },
+                extractTextPluginOptions
+              )
+            ),
+            // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+          },
+          {
+            test: /\.scss$/,
+            loader: ExtractTextPlugin.extract(
+              Object.assign(
+                {
+                  fallback: {
+                    loader: require.resolve('style-loader'),
+                    options: {
+                      hmr: false,
+                    },
+                  },
+                  use: [
+                    {
+                      loader: require.resolve('css-loader'),
+                      options: {
+                        importLoaders: 2,
+                        minimize: !argv.devbuild,
+                        sourceMap: shouldUseSourceMap,
+                      },
+                    },
+                    {
+                      loader: require.resolve('postcss-loader'),
+                      options: {
+                        sourceMap: shouldUseSourceMap,
+                      },
+                    },
+                    {
+                      loader: require.resolve('sass-loader'),
+                      options: {
+                        sourceMap: shouldUseSourceMap,
+                      },
+                    },
                   ],
                 },
                 extractTextPluginOptions
