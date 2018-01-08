@@ -25,6 +25,7 @@ yarn install
   - `background` script is always loaded (if exist).
   - Edit `config/fake-env/fake-ajax` to fake ajax calls.
 - `yarn test` for Jest testing.
+  - `yarn test --coverage` to show coverage.
   - `jest-webextension-mock` is included, though it's not a complete mock.
 - `yarn build` for full build.
   - Outputs for Chrome and Firefox are generated in `build` directory, respectively.
