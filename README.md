@@ -1,6 +1,8 @@
 # Create React Typescript Sass Webextension
 
-Battery-included, minimum configuration yet flexible.
+Battery-included starter-kit, minimum configuration yet flexible.
+
+[中文](https://github.com/crimx/create-react-typescript-sass-webextension/blob/master/docs/zh-CN.md)
 
 - React, TypeScript and Sass support
 - Unit testing with Jest (with jest-webextension-mock)
