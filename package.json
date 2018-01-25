@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@types/jest": "^22.0.1",
+    "@types/sinon-chrome": "^2.2.0",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-jest": "20.0.3",
@@ -54,7 +55,6 @@
     "generate-json-webpack-plugin": "^0.2.2",
     "html-webpack-plugin": "2.29.0",
     "jest": "^22.0.4",
-    "jest-webextension-mock": "^3.1.0",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
     "node-sass": "^4.7.2",
@@ -65,6 +65,7 @@
     "react-dev-utils": "^4.2.1",
     "sass-loader": "^6.0.6",
     "semver": "^5.4.1",
+    "sinon-chrome": "^2.2.4",
     "style-loader": "0.19.0",
     "text-transform-loader": "^2.0.0",
     "ts-jest": "^22.0.0",
@@ -83,10 +84,10 @@
       "src/**/*.{ts,tsx,js,jsx}"
     ],
     "setupFiles": [
-      "jest-webextension-mock",
       "<rootDir>/config/polyfills.js"
     ],
     "testMatch": [
+      "<rootDir>/test/unit/**/*.{ts,tsx,js,jsx}",
       "<rootDir>/src/**/__tests__/**/*.{ts,tsx,js,jsx}",
       "<rootDir>/src/**/?(*.)(spec|test).{ts,tsx,js,jsx}"
     ],
@@ -99,7 +100,7 @@
       "^(?!.*\\.(ts|tsx|js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
     "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(ts|tsx|js|jsx)$"
+      "[/\\\\]node_modules[/\\\\].+\\.js$"
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
