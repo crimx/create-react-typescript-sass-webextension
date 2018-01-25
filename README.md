@@ -3,15 +3,15 @@
 [![Build Status](https://travis-ci.org/crimx/create-react-typescript-sass-webextension.svg)](https://travis-ci.org/crimx/create-react-typescript-sass-webextension)
 [![Greenkeeper badge](https://badges.greenkeeper.io/crimx/create-react-typescript-sass-webextension.svg)](https://greenkeeper.io/)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-brightgreen.svg)](https://conventionalcommits.org)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com/)
 
-Battery-included starter-kit, minimum configuration yet flexible.
+Battery-included starter-kit, minimum configuration yet flexible and powerful.
 
 [中文](https://github.com/crimx/create-react-typescript-sass-webextension/blob/master/docs/zh-CN.md)
 
 - React, TypeScript and Sass support
-- Unit testing with Jest (with jest-webextension-mock)
+- Unit testing with Jest and sinon-chrome
 - Fake Webextension environment for easy-tweaking UI
 - Auto-generates entries
 - Separate outputs for Chrome and Firefox with different manifests
@@ -36,7 +36,7 @@ yarn install
   - Edit `config/fake-env/fake-ajax` to fake ajax calls.
 - `yarn test` for Jest testing.
   - `yarn test --coverage` to show coverage.
-  - `jest-webextension-mock` is included, though it's not a complete mock.
+  - `sinon-chrome` is included, and typings are all set up.
 - `yarn build` for full build.
   - Outputs for Chrome and Firefox are generated in `build` directory, respectively.
   - Run `yarn release` before building to get the updated version number.
@@ -50,7 +50,7 @@ yarn install
 
 # Usage
 
-In most cases you should find youself only dealing with things in `src`:
+You only need to deal with things within `src` in most of the cases:
 
 - This boilerplate comes with three common parts of a typical extension - `backgroud`, `content` and `popup`, which can be simpily deleted if you don't need them. Webpack entries are auto-generated.
 - If you need to add more pages or scripts, just add a directory in `src`. The directory name will be used as entry name. Inside the directory there should be a `index.(js|jsx|ts|tsx)` file and an `index.html` for template if you need to generate HTML file too. See [popup](https://github.com/crimx/create-react-typescript-sass-webextension/tree/master/src/popup) for example.
