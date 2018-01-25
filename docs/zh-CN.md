@@ -1,6 +1,6 @@
 # Create React Typescript Sass Webextension
 
-基本零配置的 Webextension 开发脚手架，主要针对 Chrome 和 Firefox 浏览器。
+零配置的 Webextension 开发脚手架，主要针对 Chrome 和 Firefox 浏览器。
 
 - 支持 React, TypeScript 和 Sass
 - Jest 测试 (内含 jest-webextension-mock)

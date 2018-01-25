@@ -8,6 +8,7 @@
     "target": "es6",
     "jsx": "react",
     "lib": ["es6", "dom"],
+    "allowSyntheticDefaultImports": true,
     "typeRoots": ["node_modules/@types", "node_modules/web-ext-types"]
   },
   "include": [

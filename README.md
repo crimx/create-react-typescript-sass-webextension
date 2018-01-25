@@ -1,5 +1,11 @@
 # Create React Typescript Sass Webextension
 
+[![Build Status](https://travis-ci.org/crimx/create-react-typescript-sass-webextension.svg)](https://travis-ci.org/crimx/create-react-typescript-sass-webextension)
+[![Greenkeeper badge](https://badges.greenkeeper.io/crimx/create-react-typescript-sass-webextension.svg)](https://greenkeeper.io/)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com/)
+
 Battery-included starter-kit, minimum configuration yet flexible.
 
 [中文](https://github.com/crimx/create-react-typescript-sass-webextension/blob/master/docs/zh-CN.md)
@@ -21,6 +27,8 @@ yarn install
 
 # Commands
 
+## Building
+
 - `yarn start` for tweaking UI with fake Webextension environment
   - I mostly faked the runtime messaging and storage to mimic real api. If you need more, edit [`config/fake-env/webextension-page.js`](https://github.com/crimx/create-react-typescript-sass-webextension/blob/master/config/fake-env/webextension-page.js).
   - `popup` page is loaded by default. If you need to change to other entry, `options` page for example, run `yarn start --main=options`.
@@ -31,8 +39,14 @@ yarn install
   - `jest-webextension-mock` is included, though it's not a complete mock.
 - `yarn build` for full build.
   - Outputs for Chrome and Firefox are generated in `build` directory, respectively.
+  - Run `yarn release` before building to get the updated version number.
 - `yarn devbuild` for building without compression.
 - Append ` --debug` to enable `process.env.DEBUG_MODE`.
+
+## Git
+
+- `yarn commit` to commit with [conventional](https://conventionalcommits.org) commit style. You can also use [vscode-commitizen](https://github.com/KnisterPeter/vscode-commitizen) extension in VSCode.
+- `yarn release` to bump version (auto-calculated) and update CHANGELOG.
 
 # Usage
 
@@ -50,6 +64,20 @@ In most cases you should find youself only dealing with things in `src`:
 
 # Advanced
 
+## Automatic Dependency Updates
+
+You can set up [travis CI](travis-ci.org) and [greenkeeper](https://greenkeeper.io) to update dependencies automatically.
+
+If you need to let greenkeeper update the lockfile as well, see [greenkeeper-lockfile](https://github.com/greenkeeperio/greenkeeper-lockfile).
+
+## Commit Style
+
+The boilerplate uses the [conventional](https://conventionalcommits.org) commit style. If you need to change that, see [commitlint](https://github.com/marionebl/commitlint#shared-configuration) and [commitizen](https://github.com/commitizen/cz-cli#adapters).
+
+## Code Style
+
 The boilerplate uses the TypeScript variation of [Standard](https://github.com/blakeembrey/tslint-config-standard) JavaScript code style, which can be changed in `tslint.json`.
 
-Refer to [create-reate-app](https://github.com/facebookincubator/create-react-app) for more options, may or may not works though.
+## More Options
+
+Supports most of the [create-reate-app](https://github.com/facebookincubator/create-react-app) options.

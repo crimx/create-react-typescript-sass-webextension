@@ -18,6 +18,8 @@ process.on('unhandledRejection', err => {
 // Browser targets
 const browsers = ['chrome', 'firefox']
 
+const version = require('../package.json').version
+
 // Ensure environment variables are read.
 require('../config/env')
 
@@ -41,11 +43,6 @@ const useYarn = fs.existsSync(paths.yarnLockFile)
 // These sizes are pretty large. We'll warn for bundles exceeding them.
 const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024
 const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024
-
-// 'patch' increases 1 on every build (but not devbuild)
-if (!argv.devbuild) {
-  updateVerison()
-}
 
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
@@ -137,17 +134,6 @@ function build(previousFileSizes) {
   })
 }
 
-// Change version in 'common.manifest.json'
-// 'patch' increases 1 on every build
-function updateVerison () {
-  const manifestPath = require.resolve('../src/manifest/common.manifest.json')
-  const rawManifest = fs.readFileSync(manifestPath, 'utf8')
-  const manifest = JSON.parse(rawManifest)
-  const version = semver.valid(manifest.version)
-  if (!version) { throw new Error('Manifest version incorrect') }
-  fs.writeFileSync(manifestPath, rawManifest.replace(`"${manifest.version}"`, `"${semver.inc(version, 'patch')}"`))
-}
-
 // Generate results for all browsers
 function generateByBrowser () {
   const commonManifest = require('../src/manifest/common.manifest.json')
@@ -164,7 +150,7 @@ function generateByBrowser () {
       // manifest
       fs.writeJson(
         path.join(dest, 'manifest.json'),
-        Object.assign({}, commonManifest, browserManifest),
+        Object.assign({}, commonManifest, browserManifest, { version }),
         { spaces: 2 },
       ),
       // public assets
