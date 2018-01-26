@@ -16,12 +16,12 @@
 
 # 安装
 
-```bash
-git clone git@github.com:crimx/create-react-typescript-sass-webextension.git
-cd create-react-typescript-sass-webextension
-git remote set-url [你的仓库 git 地址]
+<pre>
+git clone git@github.com:crimx/create-react-typescript-sass-webextension.git <strong>你的仓库名</strong>
+cd <strong>你的仓库名</strong>
+git remote set-url git@github.com:<strong>你的用户名</strong>/<strong>你的仓库名</strong>.git
 yarn install
-```
+</pre>
 
 # 命令
 
@@ -58,7 +58,6 @@ yarn install
   - `assets` 放静态文件。
   - `manifest` 用于生成 `manifest.json` 。
 - 如果需要在 `src` 目录下添加目录，却又不希望其生成入口，用 `_` 开头的目录名。
-- `src/manifest/common.manifest.json` 中的 `version` 会在每次 `build` 后自动给 `patch` 位置加一。
 
 # 高级配置
 

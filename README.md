@@ -18,12 +18,12 @@ Battery-included starter-kit, minimum configuration yet flexible and powerful.
 
 # Install
 
-```bash
-git clone git@github.com:crimx/create-react-typescript-sass-webextension.git
-cd create-react-typescript-sass-webextension
-git remote set-url [your repo url]
+<pre>
+git clone git@github.com:crimx/create-react-typescript-sass-webextension.git <strong>YourRepoName</strong>
+cd <strong>YourRepoName</strong>
+git remote set-url git@github.com:<strong>YourUserName</strong>/<strong>YourRepoName</strong>.git
 yarn install
-```
+</pre>
 
 # Commands
 
@@ -60,7 +60,6 @@ You only need to deal with things within `src` in most of the cases:
   - `assets` is for static assets.
   - `manifest` is for generating `manifest.json`.
 - If you need to add a directory in `src` but don't want it to be an entry, prepend `_` to the directory name.
-- Version in `src/manifest/common.manifest.json` will add 1 to the `patch` place on every build.
 
 # Advanced
 
