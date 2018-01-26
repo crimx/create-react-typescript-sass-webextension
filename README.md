@@ -1,6 +1,8 @@
 # Create React Typescript Sass Webextension
 
 [![Build Status](https://travis-ci.org/crimx/create-react-typescript-sass-webextension.svg)](https://travis-ci.org/crimx/create-react-typescript-sass-webextension)
+[![Dependencies](https://img.shields.io/david/crimx/create-react-typescript-sass-webextension.svg)](https://david-dm.org/crimx/create-react-typescript-sass-webextension)
+[![DevDependencies](https://img.shields.io/david/dev/crimx/create-react-typescript-sass-webextension.svg)](https://david-dm.org/crimx/create-react-typescript-sass-webextension#info=devDependencies)
 [![Greenkeeper badge](https://badges.greenkeeper.io/crimx/create-react-typescript-sass-webextension.svg)](https://greenkeeper.io/)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-brightgreen.svg)](https://conventionalcommits.org)
