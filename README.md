@@ -3,8 +3,8 @@
 [![Build Status](https://travis-ci.org/crimx/create-react-typescript-sass-webextension.svg)](https://travis-ci.org/crimx/create-react-typescript-sass-webextension)
 [![Dependencies](https://img.shields.io/david/crimx/create-react-typescript-sass-webextension.svg)](https://david-dm.org/crimx/create-react-typescript-sass-webextension)
 [![DevDependencies](https://img.shields.io/david/dev/crimx/create-react-typescript-sass-webextension.svg)](https://david-dm.org/crimx/create-react-typescript-sass-webextension#info=devDependencies)
-[![Greenkeeper badge](https://badges.greenkeeper.io/crimx/create-react-typescript-sass-webextension.svg)](https://greenkeeper.io/)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/crimx/create-react-typescript-sass-webextension.svg)](https://greenkeeper.io/)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-brightgreen.svg)](https://conventionalcommits.org)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com/)
@@ -17,7 +17,7 @@ Battery-included starter-kit, minimum configuration yet flexible and powerful.
 - Unit testing with Jest and sinon-chrome
 - Fake Webextension environment for easy-tweaking UI
 - Auto-generates entries
-- Separate outputs for Chrome and Firefox with different manifests
+- Target any browser you like with separate manifests
 
 # Install
 
@@ -27,29 +27,6 @@ cd <strong>YourRepoName</strong>
 git remote set-url git@github.com:<strong>YourUserName</strong>/<strong>YourRepoName</strong>.git
 yarn install
 </pre>
-
-# Commands
-
-## Building
-
-- `yarn start` for tweaking UI with fake Webextension environment
-  - I mostly faked the runtime messaging and storage to mimic real api. If you need more, edit [`config/fake-env/webextension-page.js`](https://github.com/crimx/create-react-typescript-sass-webextension/blob/master/config/fake-env/webextension-page.js).
-  - `popup` page is loaded by default. If you need to change to other entry, `options` page for example, run `yarn start --main=options`.
-  - `background` script is always loaded (if exist).
-  - Edit `config/fake-env/fake-ajax` to fake ajax calls.
-- `yarn test` for Jest testing.
-  - `yarn test --coverage` to show coverage.
-  - `sinon-chrome` is included, and typings are all set up.
-- `yarn build` for full build.
-  - Outputs for Chrome and Firefox are generated in `build` directory, respectively.
-  - Run `yarn release` before building to get the updated version number.
-- `yarn devbuild` for building without compression.
-- Append ` --debug` to enable `process.env.DEBUG_MODE`.
-
-## Git
-
-- `yarn commit` to commit with [conventional](https://conventionalcommits.org) commit style. You can also use [vscode-commitizen](https://github.com/KnisterPeter/vscode-commitizen) extension in VSCode.
-- `yarn release` to bump version (auto-calculated) and update CHANGELOG.
 
 # Usage
 
@@ -62,7 +39,35 @@ You only need to deal with things within `src` in most of the cases:
   - `components` is for shared components.
   - `assets` is for static assets.
   - `manifest` is for generating `manifest.json`.
+    - *Do not remove* `common.manifest.json`. If you don't like merging settings, just leave it with empty JSON `{}`.
+    - You can target any browser you like, just add a manifest file, e.g. `edge.manifest.json`.
 - If you need to add a directory in `src` but don't want it to be an entry, prepend `_` to the directory name.
+
+# Commands
+
+## Building
+
+- `yarn start` for tweaking UI with fake Webextension environment
+  - Due to Extension policies, it's very inconvenient to write page styles in real Extension environment. Framework devtools won't work, tricky hot-loading or live-reload... That's why I mostly faked the runtime messaging and storage to mimic real api. If you need more, edit [`config/fake-env/webextension-page.js`](https://github.com/crimx/create-react-typescript-sass-webextension/blob/master/config/fake-env/webextension-page.js).
+  - `popup` page is loaded by default. If you need to change to other entry, `options` page for example, run `yarn start --main=options`.
+  - `background` script is always loaded (if exist).
+  - Edit `config/fake-env/fake-ajax` to fake ajax calls.
+- `yarn dev` same as `yarn start`.
+- `yarn test` for Jest testing.
+  - `yarn test --coverage` to show coverage.
+  - `sinon-chrome` is included, and typings are all set up.
+- `yarn build` for full build.
+  - Outputs for Chrome and Firefox are generated in `build` directory, respectively.
+  - Run `yarn release` before building to get the updated version number.
+- `yarn devbuild` for building without compression, with file watching.
+  - Defaults to `chrome`. For other browser, e.g. Firefox, run `yarn devbuild --firefox`.
+  - Corresponding manifest file must exist in `manifest` directory, e.g. `opera.manifest.json`
+- Append ` --debug` to enable `process.env.DEBUG_MODE`.
+
+## Git
+
+- `yarn commit` to commit with [conventional](https://conventionalcommits.org) commit style. You can also use [vscode-commitizen](https://github.com/KnisterPeter/vscode-commitizen) extension in VSCode.
+- `yarn release` to bump version (auto-calculated) and update CHANGELOG.
 
 # Advanced
 
