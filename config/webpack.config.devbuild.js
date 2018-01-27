@@ -12,6 +12,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const paths = require('./paths')
 const getClientEnvironment = require('./env')
+const argv = require('minimist')(process.argv.slice(2))
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -28,12 +29,6 @@ const publicUrl = publicPath.slice(0, -1)
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl)
 
-// Assert this just to be safe.
-// Development builds of React are slow and not intended for production.
-if (env.stringified['process.env'].NODE_ENV !== '"production"') {
-  throw new Error('Production builds must have NODE_ENV=production.')
-}
-
 // Note: defined here because it will be used more than once.
 const cssFilename = '[name].css'
 
@@ -45,6 +40,10 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
   ? // Making sure that the publicPath goes back to to build folder.
     { publicPath: Array(cssFilename.split('/').length).join('../') }
   : {}
+
+const browser = ['chrome', 'opera', 'firefox', 'edge']
+  .find(name => argv[name] === true)
+  || 'chrome'
 
 // Every folder in app src would generate a entry
 // except 'manifest', 'assets','components' and name starts with '_'
@@ -72,7 +71,7 @@ module.exports = {
   }, {}),
   output: {
     // The build folder.
-    path: paths.appBuild,
+    path: path.join(paths.appBuild, browser),
     // Generated JS file names (with nested folders).
     // There will be one main bundle, and one file per asynchronous chunk.
     // We don't currently advertise code splitting but Webpack supports it.
@@ -181,7 +180,7 @@ module.exports = {
                       loader: require.resolve('css-loader'),
                       options: {
                         importLoaders: 1,
-                        minimize: true,
+                        minimize: false,
                         sourceMap: shouldUseSourceMap,
                       },
                     },
@@ -214,7 +213,7 @@ module.exports = {
                       loader: require.resolve('css-loader'),
                       options: {
                         importLoaders: 2,
-                        minimize: true,
+                        minimize: false,
                         sourceMap: shouldUseSourceMap,
                       },
                     },
@@ -259,7 +258,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new ForkTsCheckerWebpackPlugin({tslint: true, async: false}),
+    new ForkTsCheckerWebpackPlugin({tslint: true, async: true}),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
@@ -292,31 +291,6 @@ module.exports = {
     // It is absolutely essential that NODE_ENV was set to production here.
     // Otherwise React will be compiled in the very slow development mode.
     new webpack.DefinePlugin(env.stringified),
-    // Minify the code.
-    new UglifyJsPlugin({
-      uglifyOptions: {
-        ie8: false,
-        ecma: 6,
-        compress: {
-          warnings: false,
-          // Disabled because of an issue with Uglify breaking seemingly valid code:
-          // https://github.com/facebookincubator/create-react-app/issues/2376
-          // Pending further investigation:
-          // https://github.com/mishoo/UglifyJS2/issues/2011
-          comparisons: false,
-        },
-        mangle: {
-          safari10: true,
-        },
-        output: {
-          comments: false,
-          // Turned on because emoji and regex is not minified properly using default
-          // https://github.com/facebookincubator/create-react-app/issues/2488
-          ascii_only: true,
-        },
-      },
-      sourceMap: shouldUseSourceMap,
-    }),
     // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
     new ExtractTextPlugin({
       filename: cssFilename,

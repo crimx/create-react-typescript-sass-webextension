@@ -15,9 +15,6 @@ process.on('unhandledRejection', err => {
   throw err
 })
 
-// Browser targets
-const browsers = ['chrome', 'firefox']
-
 const version = require('../package.json').version
 
 // Ensure environment variables are read.
@@ -34,6 +31,14 @@ const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages')
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter')
 const printBuildError = require('react-dev-utils/printBuildError')
 const semver = require('semver')
+
+// Browser targets
+const browsers = fs.readdirSync(path.join(__dirname, '../src/manifest'))
+  .map(name => {
+    const res = /^(\S+)\.manifest\.json$/.exec(name)
+    return res ? res[1] : null
+  })
+  .filter(name => name && name !== 'common')
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild
