@@ -1,3 +1,9 @@
+-----
+
+I've created another more manageable neutrino 9 preset <https://github.com/crimx/neutrino-webextension>.
+
+-----
+
 # Create React Typescript Sass Webextension
 
 [![Build Status](https://travis-ci.org/crimx/create-react-typescript-sass-webextension.svg)](https://travis-ci.org/crimx/create-react-typescript-sass-webextension)
